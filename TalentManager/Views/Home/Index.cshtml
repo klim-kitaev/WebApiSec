@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#search").click(function () {
+                $('#employees').empty();
+
+                $.getJSON("/api/employees", function (data) {
+                    $.each(data, function (i, employee) {
+                        var now = new Date();
+                        var ts = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+                        var content = employee.Id + ' ' + employee.Name + ' ' + employee.Department + ' '+ ts;
+                        $('#employees').append($('<li/>', { text: content }));
+                    });
+                });
+            });
+        })
+    </script>
+}
+
+<h2>Employye List</h2>
+<input id="search" type="button" value="Get"/>
+<div>
+    <ul id="employees"></ul>
+</div>
+
