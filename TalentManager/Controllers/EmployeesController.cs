@@ -4,12 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TalentManager.Infrastructure;
 using TalentManager.Models;
 
 namespace TalentManager.Controllers
 {
     public class EmployeesController : ApiController
     {
+        [EnableETag]
         public Employee Get(int id)
         {
             return new Employee()

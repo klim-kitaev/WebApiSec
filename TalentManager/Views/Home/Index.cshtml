@@ -13,18 +13,32 @@
                     $.each(data, function (i, employee) {
                         var now = new Date();
                         var ts = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
-                        var content = employee.Id + ' ' + employee.Name + ' ' + employee.Department + ' '+ ts;
+                        var content = employee.Id + ' ' + employee.Name + ' ' + employee.Department + ' ' + ts;
                         $('#employees').append($('<li/>', { text: content }));
                     });
                 });
             });
-        })
+            $('#details').click(function () {
+                $('#employee').empty();
+                $.getJSON("/api/employees/12345", function (employee) {
+                    var now = new Date();
+                    var ts = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+                    var content = employee.Id + ' ' + employee.Name;
+                    content = content + ' ' + employee.Department + ' ' + ts;
+                    $('#employee').append($('<li/>', { text: content }));
+                });
+            });
+        });
     </script>
 }
 
 <h2>Employye List</h2>
 <input id="search" type="button" value="Get"/>
+<input id="details" type="button" value="Details" />
 <div>
     <ul id="employees"></ul>
+</div>
+<div>
+    <ul id="employee" />
 </div>
 

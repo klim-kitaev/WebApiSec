@@ -21,7 +21,7 @@ namespace TalentManager
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            config.Filters.Add(new TimeShareAttribute());
+            //config.Filters.Add(new TimeShareAttribute());
         }
     }
 }
